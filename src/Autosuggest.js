@@ -114,6 +114,7 @@ export default class Autosuggest extends Component {
 
     this.input = this.autowhatever.input;
     this.suggestionsContainer = this.autowhatever.itemsContainer;
+    this.touch = 'ontouchstart' in document;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -317,6 +318,9 @@ export default class Autosuggest extends Component {
   };
 
   onSuggestionMouseEnter = (event, { sectionIndex, itemIndex }) => {
+    if (this.touch) {
+      return;
+    }
     this.updateHighlightedSuggestion(sectionIndex, itemIndex);
   };
 
